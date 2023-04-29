@@ -15,6 +15,7 @@ import { Controller, useForm } from "react-hook-form";
 import FormButtons from "../components/FormButtons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useForms } from "../context/FormsContext";
 
 const schema = yup.object({
   gender: yup.string().required(),
@@ -25,32 +26,31 @@ const schema = yup.object({
   postalCode: yup
     .number()
     .typeError("Postal Code must be a number")
-    .test("len", "Must not exceed 5 digits", (val) => (val ? val.toString()?.length < 5 : true))
+    .test("len", "Must not exceed 5 digits", (val) => (val ? val.toString()?.length <= 5 : true))
     .required(),
 });
 
-type ProfileFields = yup.InferType<typeof schema>;
+export type ProfileFields = yup.InferType<typeof schema>;
 
 export default function Profile() {
+  const { setProfile, setCurrentStep } = useForms();
   const {
     register,
     handleSubmit,
     control,
     formState: { isValid, errors },
-    trigger,
   } = useForm<ProfileFields>({ resolver: yupResolver(schema), mode: "onTouched" });
 
   const onSubmit = async (data: ProfileFields) => {
-    const isValid = await trigger();
-    if (isValid) {
-      alert("ok");
-    } else {
-      alert(JSON.stringify(errors));
-    }
+    setProfile(data);
+    setCurrentStep(2);
   };
 
   return (
     <Stack>
+      <Typography variant="h2" fontSize={24} fontWeight="600">
+        Vos informations personnelles
+      </Typography>
       <Grid
         container
         gap={3}

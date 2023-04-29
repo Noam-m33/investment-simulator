@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Profile from "./pages/Profile";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import FormsProvider from "./context/FormsContext";
 
 function App() {
   const darkTheme = createTheme({
@@ -13,10 +14,12 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <CssBaseline />
-        <Layout title="Simulateur d'investissement 📈">
-          <Profile />
-        </Layout>
+        <FormsProvider>
+          <CssBaseline />
+          <Layout>
+            <Profile />
+          </Layout>
+        </FormsProvider>
       </LocalizationProvider>
     </ThemeProvider>
   );
