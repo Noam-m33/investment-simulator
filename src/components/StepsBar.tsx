@@ -52,7 +52,12 @@ const steps: Step[] = [
 
 export default function StepsBar({ activeStep }: { activeStep: number }) {
   return (
-    <Stepper orientation="vertical" activeStep={activeStep} connector={<CustomConnector />}>
+    <Stepper
+      orientation="vertical"
+      activeStep={activeStep}
+      connector={<CustomConnector />}
+      sx={{ alignSelf: "center", minHeight: 350 }}
+    >
       {steps.map(({ title, subtitle, Icon }, i) => {
         const isActive = i + 1 === activeStep;
         const isCompleted = i + 1 < activeStep;
