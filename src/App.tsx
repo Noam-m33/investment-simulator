@@ -1,11 +1,12 @@
+import { Container } from "@mui/material";
 import Profile from "./pages/Profile";
 
 function App() {
   return (
-    <div>
+    <Container sx={{ p: 5 }} maxWidth="lg">
       <h1>Simulateur d'investissement</h1>
       <Profile />;
-    </div>
+    </Container>
   );
 }
 
