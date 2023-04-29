@@ -8,21 +8,47 @@ import {
   RadioGroup,
   Box,
   Stack,
+  Typography,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Controller, useForm } from "react-hook-form";
 import FormButtons from "../components/FormButtons";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object({
+  gender: yup.string().required(),
+  birthDate: yup.string().required(),
+  firstname: yup.string().required(),
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  postalCode: yup
+    .number()
+    .typeError("Postal Code must be a number")
+    .test("len", "Must not exceed 5 digits", (val) => (val ? val.toString()?.length < 5 : true))
+    .required(),
+});
+
+type ProfileFields = yup.InferType<typeof schema>;
 
 export default function Profile() {
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid },
-    getValues,
-  } = useForm();
-  const onSubmit = (data: any) => console.log(data);
-  console.log(isValid);
+    formState: { isValid, errors },
+    trigger,
+  } = useForm<ProfileFields>({ resolver: yupResolver(schema), mode: "onTouched" });
+
+  const onSubmit = async (data: ProfileFields) => {
+    const isValid = await trigger();
+    if (isValid) {
+      alert("ok");
+    } else {
+      alert(JSON.stringify(errors));
+    }
+  };
+
   return (
     <Stack>
       <Grid
@@ -74,12 +100,14 @@ export default function Profile() {
               name="birthDate"
               render={({ field }) => (
                 <DatePicker
-                  onChange={(date) => field.onChange(date.toISOString())}
-                  value={field.value}
+                  onChange={(date: Date | null) => field.onChange(date?.toISOString())}
                   slotProps={{ textField: { size: "small" } }}
                 />
               )}
             />
+            {errors.birthDate && (
+              <Typography color="#f44336">{errors.birthDate.message}</Typography>
+            )}
           </FormControl>
         </Grid>
         <Grid item xs={5.5}>
@@ -91,6 +119,7 @@ export default function Profile() {
             label="Prénom"
             {...register("firstname")}
           />
+          {errors.firstname && <Typography color="#f44336">{errors.firstname.message}</Typography>}
         </Grid>
         <Grid item xs={5.5}>
           <TextField
@@ -100,6 +129,7 @@ export default function Profile() {
             label="Nom de famille"
             {...register("name")}
           />
+          {errors.name && <Typography color="#f44336">{errors.name.message}</Typography>}
         </Grid>
         <Grid item xs={5.5}>
           <TextField
@@ -109,6 +139,7 @@ export default function Profile() {
             label="Adresse e-mail"
             {...register("email")}
           />
+          {errors.email && <Typography color="#f44336">{errors.email.message}</Typography>}
         </Grid>
         <Grid item xs={5.5}>
           <TextField
@@ -116,8 +147,12 @@ export default function Profile() {
             variant="filled"
             size="small"
             label="Code postal"
+            type="number"
             {...register("postalCode")}
           />
+          {errors.postalCode && (
+            <Typography color="#f44336">{errors.postalCode.message}</Typography>
+          )}
         </Grid>
       </Grid>
       <Box alignSelf="end">

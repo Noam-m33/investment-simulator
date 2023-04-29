@@ -5,7 +5,7 @@ interface LayoutProps {
   title: string;
   children: React.ReactNode;
 }
-
+// Generic layout for all pages to avoid code duplication
 export default function Layout({ title, children }: LayoutProps) {
   return (
     <Container sx={{ p: 5, display: "flex", flexDirection: "column", gap: 5 }} maxWidth="lg">
