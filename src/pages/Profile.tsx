@@ -100,6 +100,7 @@ export default function Profile() {
               name="birthDate"
               render={({ field }) => (
                 <DatePicker
+                  format="DD/MM/YYYY"
                   onChange={(date: Date | null) => field.onChange(date?.toISOString())}
                   slotProps={{ textField: { size: "small" } }}
                 />
