@@ -15,7 +15,7 @@ import { Controller, useForm } from "react-hook-form";
 import FormButtons from "../components/FormButtons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useForms } from "../context/FormsContext";
+import { useForms } from "../hooks/useForms";
 
 const schema = yup.object({
   gender: yup.string().required(),
@@ -33,13 +33,17 @@ const schema = yup.object({
 export type ProfileFields = yup.InferType<typeof schema>;
 
 export default function Profile() {
-  const { setProfile, setCurrentStep } = useForms();
+  const { setProfile, setCurrentStep, formData } = useForms();
   const {
     register,
     handleSubmit,
     control,
     formState: { isValid, errors },
-  } = useForm<ProfileFields>({ resolver: yupResolver(schema), mode: "onTouched" });
+  } = useForm<ProfileFields>({
+    defaultValues: formData.profil,
+    resolver: yupResolver(schema),
+    mode: "onTouched",
+  });
 
   const onSubmit = async (data: ProfileFields) => {
     setProfile(data);

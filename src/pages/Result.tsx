@@ -1,11 +1,14 @@
 import { Stack, Typography } from "@mui/material";
-import { useForms } from "../context/FormsContext";
+import { useForms } from "../hooks/useForms";
 import { ProfileFields } from "./Profile";
+import usePrice from "../hooks/usePrice";
 
 export default function Result() {
   const {
     formData: { profil, investissementAmount, selectedInvestissement },
   } = useForms();
+  const { data, error } = usePrice();
+  console.log(data?.BTC, error);
   const { gender, name, birthDate } = profil as ProfileFields;
   const genderText = gender === "Homme" ? "Mr" : "Mme";
   const cryptoName = selectedInvestissement === "BTC" ? "Bitcoin" : "Ethereum";

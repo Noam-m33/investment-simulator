@@ -1,5 +1,5 @@
 import { Box, Slider, Stack, Typography } from "@mui/material";
-import { useForms } from "../context/FormsContext";
+import { useForms } from "../hooks/useForms";
 import { useState } from "react";
 import FormButtons from "../components/FormButtons";
 

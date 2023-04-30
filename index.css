@@ -10,8 +10,8 @@ body {
 }
 
 #root {
-  min-height: "100vh";
-  min-width: "100vw";
+  min-height: 100vh;
+  min-width: 100vw;
   background-color: #0e1048;
   color: white;
 }

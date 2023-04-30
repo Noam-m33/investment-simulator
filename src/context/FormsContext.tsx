@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { ProfileFields } from "../pages/Profile";
 
 interface FormsContext {
@@ -67,11 +67,3 @@ export default function FormsProvider({ children }: { children: ReactNode }) {
     </FormsContext.Provider>
   );
 }
-
-export const useForms = () => {
-  const context = useContext(FormsContext);
-  if (context === undefined) {
-    throw new Error("useForms must be used within a FormsProvider");
-  }
-  return context;
-};
