@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import { useForms } from "../context/FormsContext";
 import { ProfileFields } from "./Profile";
 
@@ -23,7 +23,7 @@ export default function Result() {
   }
 
   return (
-    <Container>
+    <Stack gap={5}>
       <Typography variant="h2" fontSize={24} fontWeight="600">
         Récapitulatif de votre investissement
       </Typography>
@@ -33,6 +33,6 @@ export default function Result() {
         {investissementAmount}€ vous obtiendrez avec un prix actuel de {1000} par unité de{" "}
         {cryptoName} un total de {investissementAmount / 1000} unités de {cryptoName}.
       </Typography>
-    </Container>
+    </Stack>
   );
 }
