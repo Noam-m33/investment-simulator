@@ -22,12 +22,13 @@ const usePrice = (): PriceHook => {
     const fetchPriceData = async () => {
       setLoading(true);
       try {
-        const response = await fetch("api/v2/cryptocurrency/quotes/latest?symbol=BTC,ETH", {
-          headers: {
-            "X-CMC_PRO_API_KEY": apiKey,
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch("/getCryptoPrices");
+        // const response = await fetch("api/v2/cryptocurrency/quotes/latest?symbol=BTC,ETH", {
+        //   headers: {
+        //     "X-CMC_PRO_API_KEY": apiKey,
+        //     "Content-Type": "application/json",
+        //   },
+        // });
         const { data } = await response.json();
         setData({
           BTC: Math.floor(data.BTC[0].quote.USD.price),
@@ -36,6 +37,7 @@ const usePrice = (): PriceHook => {
         setLoading(false);
       } catch (error: Error | any) {
         setError(error);
+        console.error("error");
         setLoading(false);
       }
     };

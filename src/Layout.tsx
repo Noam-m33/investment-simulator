@@ -1,6 +1,7 @@
 import { Container, Divider, Stack, Typography, useMediaQuery } from "@mui/material";
 import StepsBar from "./components/StepsBar";
 import { useForms } from "./hooks/useForms";
+import usePrice from "./hooks/usePrice";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +11,8 @@ export default function Layout({ children }: LayoutProps) {
   const { currentStep } = useForms();
   const isMobile = useMediaQuery("(max-width: 600px)");
   const isResultStep = currentStep === 4;
+  const { data, error } = usePrice();
+  console.log(data, error);
   return (
     <Container sx={{ p: 5, display: "flex", flexDirection: "column", gap: 5 }} maxWidth="lg">
       <Typography variant="h1" fontSize={34} fontWeight="600">
