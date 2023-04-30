@@ -21,7 +21,7 @@ interface FormData {
 }
 
 export default function FormsProvider({ children }: { children: ReactNode }) {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
   const [formData, setFormData] = useState<FormData>({
     profil: {},
     investissementAmount: 1000,
@@ -38,7 +38,7 @@ export default function FormsProvider({ children }: { children: ReactNode }) {
   function setInvestementAmount(data: number) {
     setFormData((prevState) => ({
       ...prevState,
-      investissementAmunt: data,
+      investissementAmount: data,
     }));
   }
   function setSelectedInvestissement(data: SelectedInvestissement) {

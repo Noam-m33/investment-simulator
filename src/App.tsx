@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import Layout from "./Layout";
-import Profile from "./pages/Profile";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import FormsProvider from "./context/FormsContext";
+import Pages from "./pages";
 
 function App() {
   const darkTheme = createTheme({
@@ -17,7 +17,7 @@ function App() {
         <FormsProvider>
           <CssBaseline />
           <Layout>
-            <Profile />
+            <Pages />
           </Layout>
         </FormsProvider>
       </LocalizationProvider>

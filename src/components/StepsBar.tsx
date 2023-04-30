@@ -31,7 +31,7 @@ interface Step {
 }
 
 // Separate the steps data in a const to be able to map over it
-// To have a more genereic component and easier to maintain
+// To have a more genereic component and it's easier to maintain
 const steps: Step[] = [
   {
     title: "Profil",

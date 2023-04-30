@@ -32,7 +32,7 @@ export default function FormButtons({
   onGoBack,
 }: FormButtonsProps) {
   return (
-    <Stack flexDirection="row">
+    <Stack flexDirection="row" gap={3}>
       {displayGoBack && <Button onClick={onGoBack}>Retour</Button>}
       {end ? (
         <PrimaryButton onClick={onSubmit} disabled={disabledNextStep}>
