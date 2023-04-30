@@ -11,8 +11,7 @@ export default function Result() {
     formData: { profil, investissementAmount, selectedInvestissement },
     resetForm,
   } = useForms();
-  const { data, error } = usePrice();
-  console.log(data?.BTC, error);
+  const { data } = usePrice();
   const { gender, name, birthDate } = profil as ProfileFields;
   const genderText = gender === "Homme" ? "Mr" : "Mme";
   const cryptoName = selectedInvestissement === "BTC" ? "Bitcoin" : "Ethereum";
