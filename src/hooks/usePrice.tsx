@@ -16,19 +16,11 @@ const usePrice = (): PriceHook => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const apiKey = import.meta.env.VITE_APP_COINMARKETCAP_API_KEY as string;
-
   useEffect(() => {
     const fetchPriceData = async () => {
       setLoading(true);
       try {
         const response = await fetch("/getCryptoPrices");
-        // const response = await fetch("api/v2/cryptocurrency/quotes/latest?symbol=BTC,ETH", {
-        //   headers: {
-        //     "X-CMC_PRO_API_KEY": apiKey,
-        //     "Content-Type": "application/json",
-        //   },
-        // });
         const { data } = await response.json();
         setData({
           BTC: Math.floor(data.BTC[0].quote.USD.price),

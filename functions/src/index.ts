@@ -8,16 +8,22 @@ export const getCryptoPrices = functions
   .runWith({secrets: ["API_KEY"]})
   .https.onRequest((req, res) => {
     corsHandler(req, res, () => {
-      const apikey = process.env.SECRET_NAME;
-      const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,ETH&CMC_PRO_API_KEY=${apikey}`;
+      const apikey = process.env.API_KEY;
+      console.log(apikey);
+      const url =
+        "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC,ETH";
       axios
-        .get(url)
+        .get<Response>(url, {
+          headers: {
+            "X-CMC_PRO_API_KEY": apikey,
+            "Content-Type": "application/json",
+          },
+        })
         .then((response) => {
-          res.send(response);
+          res.send(response.data);
         })
         .catch((error) => {
-          console.error(error);
-          res.sendStatus(500);
+          functions.logger.error(error);
         });
     });
   });
