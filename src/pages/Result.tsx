@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useForms } from "../hooks/useForms";
 import { ProfileFields } from "./Profile";
 import usePrice from "../hooks/usePrice";
@@ -19,6 +19,7 @@ export default function Result() {
   const currentPrice = selectedInvestissement === "BTC" ? data?.BTC : data?.ETH;
   const age = calculateAge(birthDate);
 
+  // TODO: Move this function to a utils file and should be unit tested
   function calculateAge(birthdate: string) {
     const today = new Date();
     const birthDate = new Date(birthdate);
