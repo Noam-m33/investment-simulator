@@ -1,5 +1,4 @@
 import { useForms } from "../hooks/useForms";
-import usePrice from "../hooks/usePrice";
 import Budget from "./Budget";
 import Profile from "./Profile";
 import Recommandation from "./Recommandation";
@@ -7,8 +6,6 @@ import Result from "./Result";
 
 export default function Pages() {
   const { currentStep } = useForms();
-  const { data, error } = usePrice();
-  console.log(data?.BTC, data?.ETH);
 
   return (
     <>

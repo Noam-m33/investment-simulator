@@ -1,7 +1,8 @@
 import { Button, Stack, styled } from "@mui/material";
 interface FormButtonsProps {
   displayGoBack?: boolean;
-  end?: boolean;
+  goBackLabel?: string;
+  primaryLabel?: string;
   disabledNextStep?: boolean;
   onSubmit: () => void;
   onGoBack?: () => void;
@@ -26,23 +27,18 @@ const PrimaryButton = styled(Button)(() => ({
 
 export default function FormButtons({
   displayGoBack,
-  end,
+  primaryLabel = "Suivant",
+  goBackLabel = "Retour",
   disabledNextStep,
   onSubmit,
   onGoBack,
 }: FormButtonsProps) {
   return (
     <Stack flexDirection="row" gap={3}>
-      {displayGoBack && <Button onClick={onGoBack}>Retour</Button>}
-      {end ? (
-        <PrimaryButton onClick={onSubmit} disabled={disabledNextStep}>
-          Terminer
-        </PrimaryButton>
-      ) : (
-        <PrimaryButton onClick={onSubmit} disabled={disabledNextStep}>
-          Suivant
-        </PrimaryButton>
-      )}
+      {displayGoBack && <Button onClick={onGoBack}>{goBackLabel}</Button>}
+      <PrimaryButton onClick={onSubmit} disabled={disabledNextStep}>
+        {primaryLabel}
+      </PrimaryButton>
     </Stack>
   );
 }

@@ -29,7 +29,10 @@ const usePrice = (): PriceHook => {
           },
         });
         const { data } = await response.json();
-        setData({ BTC: data.BTC[0].quote.USD.price, ETH: data.ETH[0].quote.USD.price });
+        setData({
+          BTC: Math.floor(data.BTC[0].quote.USD.price),
+          ETH: Math.floor(data.ETH[0].quote.USD.price),
+        });
         setLoading(false);
       } catch (error: Error | any) {
         setError(error);

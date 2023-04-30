@@ -4,6 +4,7 @@ import { ProfileFields } from "../pages/Profile";
 interface FormsContext {
   currentStep: number;
   setCurrentStep: (step: number) => void;
+  resetForm: () => void;
   setProfile: (data: ProfileFields) => void;
   setInvestementAmount: (data: number) => void;
   setSelectedInvestissement: (data: SelectedInvestissement) => void;
@@ -21,7 +22,7 @@ interface FormData {
 }
 
 export default function FormsProvider({ children }: { children: ReactNode }) {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     profil: undefined,
     investissementAmount: 1000,
@@ -48,6 +49,15 @@ export default function FormsProvider({ children }: { children: ReactNode }) {
     }));
   }
 
+  function resetForm() {
+    setCurrentStep(1);
+    setFormData({
+      profil: undefined,
+      investissementAmount: 1000,
+      selectedInvestissement: undefined,
+    });
+  }
+
   return (
     <FormsContext.Provider
       value={{
@@ -56,11 +66,8 @@ export default function FormsProvider({ children }: { children: ReactNode }) {
         setProfile,
         setInvestementAmount,
         setSelectedInvestissement,
-        formData: {
-          profil: formData.profil,
-          investissementAmount: formData.investissementAmount,
-          selectedInvestissement: formData.selectedInvestissement,
-        },
+        resetForm,
+        formData,
       }}
     >
       {children}
