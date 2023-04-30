@@ -1,4 +1,4 @@
-import { Stack, Typography, Box, Slider, ButtonBase } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 import FormButtons from "../components/FormButtons";
 import { useForms } from "../context/FormsContext";
 import BTCImage from "../assets/btc-image.png";
@@ -32,7 +32,7 @@ export default function Recommandation() {
           disabledNextStep={!formData.selectedInvestissement}
           displayGoBack
           onGoBack={() => setCurrentStep(2)}
-          onSubmit={() => alert("Terminé !")}
+          onSubmit={() => setCurrentStep(4)}
         />
       </Box>
     </Stack>

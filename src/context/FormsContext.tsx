@@ -15,7 +15,7 @@ export const FormsContext = createContext<FormsContext | undefined>(undefined);
 type SelectedInvestissement = "BTC" | "ETH";
 
 interface FormData {
-  profil: ProfileFields | object;
+  profil: ProfileFields | undefined;
   investissementAmount: number;
   selectedInvestissement?: SelectedInvestissement;
 }
@@ -23,7 +23,7 @@ interface FormData {
 export default function FormsProvider({ children }: { children: ReactNode }) {
   const [currentStep, setCurrentStep] = useState(2);
   const [formData, setFormData] = useState<FormData>({
-    profil: {},
+    profil: undefined,
     investissementAmount: 1000,
     selectedInvestissement: undefined,
   });
