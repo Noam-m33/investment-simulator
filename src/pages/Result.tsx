@@ -3,6 +3,7 @@ import { useForms } from "../hooks/useForms";
 import { ProfileFields } from "./Profile";
 import usePrice from "../hooks/usePrice";
 import ETHImage from "../assets/ethereum-image.png";
+import BTCImage from "../assets/btc-image.png";
 import CardButton from "../components/CardButton";
 import FormButtons from "../components/FormButtons";
 
@@ -51,10 +52,9 @@ export default function Result() {
         alignSelf="center"
       >
         <CardButton
-          img={ETHImage}
-          title="ETH"
-          subtitle={data?.ETH ? `${data?.ETH}$` : "Loading..."}
-          onClick={() => console.log("ETH")}
+          img={selectedInvestissement === "BTC" ? BTCImage : ETHImage}
+          title={selectedInvestissement || ""}
+          subtitle={`${currentPrice}` || "Loading..."}
         />
       </Stack>
       <Typography variant="h2" fontSize={24} fontWeight="600">

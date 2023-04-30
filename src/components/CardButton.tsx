@@ -4,7 +4,7 @@ interface CardButtonProps {
   img: string;
   title: string;
   subtitle?: string;
-  onClick: () => void;
+  onClick?: () => void;
   selected?: boolean;
 }
 
