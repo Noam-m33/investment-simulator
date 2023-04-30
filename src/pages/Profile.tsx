@@ -57,7 +57,7 @@ export default function Profile() {
         justifyContent={"space-between"}
         sx={{ backgroundColor: "#80808026", borderRadius: 10, m: 2, p: 5 }}
       >
-        <Grid item xs={5.5}>
+        <Grid item xs={12} md={5.5}>
           <FormControl>
             <FormLabel sx={{ color: "white", ["&.Mui-focused"]: { color: "white" } }}>
               Genre
@@ -90,7 +90,7 @@ export default function Profile() {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={5.5}>
+        <Grid item xs={12} md={5.5}>
           <FormControl fullWidth>
             <FormLabel sx={{ color: "white", pb: 1, ["&.Mui-focused"]: { color: "white" } }}>
               Date de naissance
@@ -111,7 +111,7 @@ export default function Profile() {
             )}
           </FormControl>
         </Grid>
-        <Grid item xs={5.5}>
+        <Grid item xs={12} md={5.5}>
           <TextField
             color="primary"
             fullWidth
@@ -122,7 +122,7 @@ export default function Profile() {
           />
           {errors.firstname && <Typography color="#f44336">{errors.firstname.message}</Typography>}
         </Grid>
-        <Grid item xs={5.5}>
+        <Grid item xs={12} md={5.5}>
           <TextField
             fullWidth
             variant="filled"
@@ -132,7 +132,7 @@ export default function Profile() {
           />
           {errors.name && <Typography color="#f44336">{errors.name.message}</Typography>}
         </Grid>
-        <Grid item xs={5.5}>
+        <Grid item xs={12} md={5.5}>
           <TextField
             fullWidth
             variant="filled"
@@ -142,7 +142,7 @@ export default function Profile() {
           />
           {errors.email && <Typography color="#f44336">{errors.email.message}</Typography>}
         </Grid>
-        <Grid item xs={5.5}>
+        <Grid item xs={12} md={5.5}>
           <TextField
             fullWidth
             variant="filled"

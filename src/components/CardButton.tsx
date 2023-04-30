@@ -9,12 +9,14 @@ interface CardButtonProps {
 
 export default function CardButton({ img, title, onClick, selected }: CardButtonProps) {
   return (
-    <ButtonBase onClick={onClick}>
+    <ButtonBase sx={{ width: "100%" }} onClick={onClick}>
       <Box
         sx={{
           backgroundColor: selected ? "#62C98E" : "#80808026",
-          height: 150,
-          width: 200,
+          maxHeight: 150,
+          maxWidth: 200,
+          height: "90%",
+          width: "90%",
           borderRadius: 5,
           display: "flex",
           flexDirection: "column",

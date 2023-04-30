@@ -50,13 +50,19 @@ const steps: Step[] = [
   },
 ];
 
-export default function StepsBar({ activeStep }: { activeStep: number }) {
+export default function StepsBar({
+  activeStep,
+  isMobile,
+}: {
+  activeStep: number;
+  isMobile?: boolean;
+}) {
   return (
     <Stepper
-      orientation="vertical"
+      orientation={isMobile ? "horizontal" : "vertical"}
       activeStep={activeStep}
       connector={<CustomConnector />}
-      sx={{ alignSelf: "center", minHeight: 350 }}
+      sx={{ alignSelf: "center", minHeight: isMobile ? 150 : 350 }}
     >
       {steps.map(({ title, subtitle, Icon }, i) => {
         const isActive = i + 1 === activeStep;
@@ -65,7 +71,7 @@ export default function StepsBar({ activeStep }: { activeStep: number }) {
         return (
           <Step key={i}>
             <StepLabel
-              sx={{ flexDirection: "row-reverse", gap: 2 }}
+              sx={{ flexDirection: isMobile ? "column" : "row-reverse", gap: 2 }}
               StepIconComponent={() => (
                 <Box
                   sx={{
@@ -83,13 +89,15 @@ export default function StepsBar({ activeStep }: { activeStep: number }) {
                 </Box>
               )}
             >
-              <Stack alignItems="flex-end">
+              <Stack alignItems={isMobile ? "center" : "flex-end"}>
                 <Typography textAlign="right" fontWeight="600" color="white">
                   {title}
                 </Typography>
-                <Typography textAlign="right" color="#e0e0e0">
-                  {subtitle}
-                </Typography>
+                {!isMobile && (
+                  <Typography textAlign="right" color="#e0e0e0">
+                    {subtitle}
+                  </Typography>
+                )}
               </Stack>
             </StepLabel>
           </Step>

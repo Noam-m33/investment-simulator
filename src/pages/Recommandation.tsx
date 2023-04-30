@@ -12,7 +12,14 @@ export default function Recommandation() {
       <Typography variant="h2" fontSize={24} fontWeight="600">
         Sélectionnez une option
       </Typography>
-      <Stack direction="row" gap={3} alignSelf="center" m={5}>
+      <Stack
+        sx={{ width: "100%", minHeight: 150 }}
+        direction="row"
+        justifyContent={"center"}
+        gap={3}
+        alignSelf="center"
+        m={10}
+      >
         <CardButton
           img={BTCImage}
           selected={formData.selectedInvestissement === "BTC"}
